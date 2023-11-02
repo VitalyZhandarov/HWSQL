@@ -1,19 +1,18 @@
-package Test;
+package test;
 
-import Data.DataHelper;
-import Data.SQLHelper;
-import Page.LoginPage;
-import org.junit.jupiter.api.AfterAll;
+import data.DataHelper;
+import data.SQLHelper;
+import page.LoginPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static Data.SQLHelper.cleanAuthCodes;
-import static Data.SQLHelper.cleanDataBase;
+import static data.SQLHelper.cleanAuthCodes;
 import static com.codeborne.selenide.Selenide.open;
-;
+
 
 public class LoginBankTest {
+
     LoginPage loginPage;
 
     @BeforeEach
