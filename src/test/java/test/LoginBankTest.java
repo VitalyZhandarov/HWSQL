@@ -17,11 +17,13 @@ public class LoginBankTest {
 
     @BeforeEach
     void setUp() {
+
         loginPage = open("http://localhost:9999", LoginPage.class);
     }
 
     @AfterEach
     void cleanDown() {
+
         cleanAuthCodes();
     }
 
