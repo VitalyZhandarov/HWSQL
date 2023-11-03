@@ -2,6 +2,7 @@ package test;
 
 import data.DataHelper;
 import data.SQLHelper;
+import org.junit.jupiter.api.AfterAll;
 import page.LoginPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,31 +10,30 @@ import org.junit.jupiter.api.Test;
 
 import static data.SQLHelper.cleanAuthCodes;
 import static com.codeborne.selenide.Selenide.open;
+import static data.SQLHelper.cleanDataBase;
 
 
 public class LoginBankTest {
 
     LoginPage loginPage;
 
-    @BeforeEach
-    void setUp() {
-
-        loginPage = open("http://localhost:9999", LoginPage.class);
-    }
-
     @AfterEach
-    void cleanDown() {
-
+    public void cleanDown() {
         cleanAuthCodes();
     }
 
-//    @AfterAll
-//    static void cleanDownAll() {
-//        cleanDataBase();
-//    }
+    @BeforeEach
+    public void setUp() {
+        loginPage = open("http://localhost:9999", LoginPage.class);
+    }
+
+    @AfterAll
+    static void cleanDownAll() {
+        cleanDataBase();
+    }
 
     @Test
-    void shouldLoginPage () {
+    public void shouldLoginPage () {
         var authInfo = DataHelper.getAuthInfoForTest();
         var verificationPage = loginPage.validLogin(authInfo);
         verificationPage.verifyVisibleVerificationPage();
@@ -42,7 +42,7 @@ public class LoginBankTest {
     }
 
     @Test
-    void shouldBeErrorNotificationWithRandomCode() {
+    public void shouldBeErrorNotificationWithRandomCode() {
         var authInfo = DataHelper.getAuthInfoForTest();
         var verificationPage = loginPage.validLogin(authInfo);
         verificationPage.verifyVisibleVerificationPage();
